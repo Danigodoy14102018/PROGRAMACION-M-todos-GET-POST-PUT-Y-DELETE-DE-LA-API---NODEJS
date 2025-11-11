@@ -1,8 +1,8 @@
 import { Router } from "express";
-import ejemplo from "./ejemplo.routes.js";
+import presupuesto from "./presupuesto.routes.js";
 
 const indexRoutes = Router();
 
-indexRoutes.use('/ejemplo', ejemplo);
+indexRoutes.use('/presupuestos', presupuesto);
 
 export default indexRoutes;

@@ -1,2 +1,131 @@
-<!-- error pagina -->
-<h2>No se encontro la pagina</h2>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Taller PC — Mantenimiento y Soporte</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="./styles.css" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+        <i class="bi bi-pc-display-fill fs-3 text-primary"></i>
+        <span class="fw-semibold">Taller PC</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navmenu">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+          <li class="nav-item"><a class="nav-link" href="#tips">Tips</a></li>
+          <li class="nav-item"><a class="nav-link" href="#planes">Planes</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="container my-5">
+    <div class="hero d-flex flex-column flex-lg-row align-items-center gap-4">
+      <div class="flex-fill">
+        <h1 class="display-6 mb-3">Mantenimiento, reparación y optimización de tu PC</h1>
+        <p class="lead text-muted">Servicios profesionales para equipos de escritorio y portátiles: limpieza física, diagnóstico de hardware, actualización de componentes, optimización del sistema y respaldo seguro de tus datos.</p>
+        <div class="d-flex gap-3 mt-3">
+          <a href="#servicios" class="btn btn-primary btn-lg">Nuestros servicios</a>
+          <button id="abrirModalBtn" class="btn btn-outline-primary btn-lg">Solicitar presupuesto</button>
+        </div>
+        <ul class="list-unstyled mt-4 d-flex gap-4 flex-wrap">
+          <li class="d-flex align-items-start gap-2">
+            <i class="bi bi-check-circle-fill text-success"></i>
+            <small class="text-muted">Diagnóstico gratuito</small>
+          </li>
+          <li class="d-flex align-items-start gap-2">
+            <i class="bi bi-check-circle-fill text-success"></i>
+            <small class="text-muted">Piezas originales y garantía</small>
+          </li>
+          <li class="d-flex align-items-start gap-2">
+            <i class="bi bi-check-circle-fill text-success"></i>
+            <small class="text-muted">Soporte remoto y presencial</small>
+          </li>
+        </ul>
+      </div>
+      <div class="flex-fill text-center">
+        <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="PC maintenance" class="img-fluid rounded-3 shadow-lg" style="max-width:520px">
+      </div>
+    </div>
+  </header>
+
+  <div class="modal fade" id="presupuestoModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+      <div class="modal-content">
+        <form id="presupuestoForm" class="p-3">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="modal-title" id="modalTitle">Solicitar presupuesto</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <input type="hidden" id="presupuestoId" value="">
+          <div class="row g-3 mb-3">
+            <div class="col-md-6">
+              <label for="propietario" class="form-label">Nombre del dueño</label>
+              <input type="text" id="propietario" class="form-control" required>
+            </div>
+            <div class="col-md-3">
+              <label for="marca" class="form-label">Marca</label>
+              <select id="marca" class="form-select" required>
+                <option value="">-- Seleccione marca --</option>
+                <option>AMD</option>
+                <option>Intel</option>
+                <option>NVIDIA</option>
+                <option>Asus</option>
+                <option>Acer</option>
+                <option>HP</option>
+                <option>Lenovo</option>
+                <option>MSI</option>
+                <option>Gigabyte</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="presupuesto" class="form-label">Presupuesto (USD)</label>
+              <input type="number" id="presupuesto" class="form-control" min="0" required>
+            </div>
+            <div class="col-md-4">
+              <label for="fecha" class="form-label">Fecha</label>
+              <input type="date" id="fecha" class="form-control" required>
+            </div>
+            <div class="col-md-8 d-flex align-items-end justify-content-end">
+              <div>
+                <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary" id="guardarBtn">Guardar</button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="px-3 pb-3">
+          <div class="table-responsive">
+            <table class="table table-striped mb-0" id="tablaPresupuestos">
+              <thead>
+                <tr>
+                  <th>Propietario</th>
+                  <th>Marca</th>
+                  <th>Presupuesto</th>
+                  <th>Fecha</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
